@@ -52,7 +52,8 @@ def has_same_parameters(est_params, boundaries_id, labels_id, params):
         if param_key in est_params.keys() and \
                 est_params[param_key] == params[param_key] and \
                 est_params["boundaries_id"] == boundaries_id and \
-                (labels_id is None or est_params["labels_id"] == labels_id):
+                ((labels_id is None and est_params["labels_id"] is None)
+                or (est_params["labels_id"] == labels_id)):
             K += 1
     return K == len(params.keys())
 
@@ -393,6 +394,9 @@ def save_estimations(out_file, times, labels, boundaries_id, labels_id,
     params : dict
         Dictionary with additional parameters for both algorithms.
     """
+    # Remove features if they exist
+    params.pop("features", None)
+
     # Convert to intervals and sanity check
     if 'numpy' in str(type(times)):
         inters = utils.times_to_intervals(times)
@@ -563,19 +567,33 @@ def get_all_est_labels(est_file, annot_beats, algo_ids=None, annotator_id=0):
     return gt_times, all_labels
 
 
-def get_all_boundary_algorithms(algorithms):
+def get_all_boundary_algorithms():
+    """Gets all the possible boundary algorithms in MSAF.
+
+    Returns
+    -------
+    algo_ids : list
+        List of all the IDs of boundary algorithms (strings).
+    """
     algo_ids = []
-    for name in algorithms.__all__:
-        module = eval(algorithms.__name__ + "." + name)
+    for name in msaf.algorithms.__all__:
+        module = eval(msaf.algorithms.__name__ + "." + name)
         if module.is_boundary_type:
             algo_ids.append(module.algo_id)
     return algo_ids
 
 
-def get_all_label_algorithms(algorithms):
+def get_all_label_algorithms():
+    """Gets all the possible label (structural grouping) algorithms in MSAF.
+
+    Returns
+    -------
+    algo_ids : list
+        List of all the IDs of label algorithms (strings).
+    """
     algo_ids = []
-    for name in algorithms.__all__:
-        module = eval(algorithms.__name__ + "." + name)
+    for name in msaf.algorithms.__all__:
+        module = eval(msaf.algorithms.__name__ + "." + name)
         if module.is_label_type:
             algo_ids.append(module.algo_id)
     return algo_ids

@@ -1,12 +1,9 @@
 # Music Structure Analysis Framework #
 
-Master branch:
+A Python framework to analyze music structure.
 
-[![Build Status](https://travis-ci.org/urinieto/msaf.svg?branch=master)](https://travis-ci.org/urinieto/msaf)
-
-Devel branch:
-
-[![Build Status](https://travis-ci.org/urinieto/msaf.svg?branch=devel)](https://travis-ci.org/urinieto/msaf)
+* Master branch: [![Build Status](https://travis-ci.org/urinieto/msaf.svg?branch=master)](https://travis-ci.org/urinieto/msaf)
+* Devel branch: [![Build Status](https://travis-ci.org/urinieto/msaf.svg?branch=devel)](https://travis-ci.org/urinieto/msaf)
 
 ## Description ##
 
@@ -42,13 +39,15 @@ From the root folder, type:
 
 ## Using MSAF ##
 
-A series of examples can be seen in the `scripts` folder.
+A series of examples can be seen in the `examples` folder.
+
+You can follow a thorough example on this fantastic [Jupyter Notebook](https://github.com/urinieto/msaf/blob/master/examples/Run%20MSAF.ipynb).
 
 MSAF can be run in two different modes: **single file** and **collection** modes.
 
 ###Single File Mode###
 
-To run an audio file with the Convex NMF method for boundaries and 2D-FMC for labels using HPCP as features (from the `scripts` folder):
+To run an audio file with the Convex NMF method for boundaries and 2D-FMC for labels using HPCP as features (from the `examples` folder):
 
     ./run_msaf.py audio_file.mp3 -bid cnmf -lid fmc2d -f hpcp
 
@@ -151,15 +150,14 @@ est_labels = estimations[1]
 ```
 
 For more parameters, please read the function's docstring.
-For more examples, please explore the `scripts` folder.
+For more examples, please explore the `examples` folder.
 
 
 ## Requirements ##
 
-* Python 2.7
+* Python 2.7 or 3.4
 * Numpy
 * Scipy
-* PyMF (for C-NMF algorithms only)
 * cvxopt (for C-NMF algorithms only)
 * Pandas (for evaluation only)
 * joblib

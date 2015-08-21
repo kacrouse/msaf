@@ -19,6 +19,9 @@ class Anal():
     f_min = 27.5   # Minimum frequency for chroma
     cqt_bins = 84
 
+# Default algorithms for msaf
+DEFAULT_BOUND_ID = "sf"
+DEFAULT_LABEL_ID = None
 
 # Import all submodules (for each task)
 from . import featextract
@@ -29,6 +32,8 @@ from . import utils
 from . import algorithms
 from . import run
 from .run import process
+from .input_output import get_all_boundary_algorithms
+from .input_output import get_all_label_algorithms
 
 # Global Config
 prefix_dict = {
@@ -60,7 +65,7 @@ class Dataset():
 
 
 feat_dict = {
-    'serra' :   'mix',
+    'sf'    :   'hpcp',
     'levy'  :   'hpcp',
     'foote' :   'hpcp',
     'siplca':   '',
@@ -71,3 +76,5 @@ feat_dict = {
     'cnmf3' :   'hpcp',
     '2dfmc' :   ''
 }
+
+AVAILABLE_FEATS = ["hpcp", "mfcc", "cqt", "tonnetz"]
