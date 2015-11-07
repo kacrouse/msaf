@@ -2,6 +2,7 @@
 These set of functions help the algorithms of MSAF to read and write files
 of the Segmentation Dataset.
 """
+from collections import Counter
 import datetime
 import glob
 import jams
@@ -98,7 +99,6 @@ def read_estimations(est_file, boundaries_id, labels_id=None, **params):
                 curr_bounds = []
                 curr_labels = []
             curr_bounds.append(bounds)
-            curr_labels.append(value["label"])
             curr_level = value["level"]
         hier_bounds.append(np.asarray(curr_bounds))
         hier_labels.append(np.asarray(curr_labels))
@@ -417,6 +417,7 @@ def save_estimations(file_struct, times, labels, boundaries_id, labels_id,
             ann.append(time=bound_inter[0], duration=dur, value=value)
 
     # Write results
+    print(jam)
     jam.save(file_struct.est_file)
 
 
