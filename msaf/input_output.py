@@ -417,7 +417,7 @@ def save_estimations(file_struct, times, labels, boundaries_id, labels_id,
             ann.append(time=bound_inter[0], duration=dur, value=value)
 
     # Write results
-    print(jam)
+    print(jam.annotations[0].data)
     jam.save(file_struct.est_file)
 
 
