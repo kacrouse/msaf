@@ -271,7 +271,8 @@ def process(in_path, annot_beats=False, feature="hpcp", ds_name="*",
             framesync=False, boundaries_id=msaf.DEFAULT_BOUND_ID,
             labels_id=msaf.DEFAULT_LABEL_ID, hier=False, sonify_bounds=False,
             plot=False, n_jobs=4, annotator_id=0, config=None,
-            out_bounds="out_bounds.wav", out_sr=22050):
+            out_bounds="out_bounds.wav", out_sr=22050,
+            save_json=True):
     """Main process to segment a file or a collection of files.
 
     Parameters
@@ -312,6 +313,8 @@ def process(in_path, annot_beats=False, feature="hpcp", ds_name="*",
         mode, when sonify_bounds is True.
     out_sr : int
         Sampling rate for the sonified bounds.
+    save_json : bool
+        Whether to save the estimations as a JSON file.
 
     Returns
     -------
@@ -364,9 +367,10 @@ def process(in_path, annot_beats=False, feature="hpcp", ds_name="*",
                                     boundaries_id, labels_id, ds_name)
 
         # Save estimations
-        msaf.utils.ensure_dir(os.path.dirname(file_struct.est_file))
-        io.save_estimations(file_struct, est_times, est_labels,
-                            boundaries_id, labels_id, **config)
+        if save_json:
+            msaf.utils.ensure_dir(os.path.dirname(file_struct.est_file))
+            io.save_estimations(file_struct, est_times, est_labels,
+                                boundaries_id, labels_id, **config)
 
         return est_times, est_labels
     else:
