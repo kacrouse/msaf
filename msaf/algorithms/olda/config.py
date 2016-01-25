@@ -3,11 +3,11 @@ import os
 
 # OLDA params
 config = {
-    #"transform": os.path.join(os.path.dirname(os.path.realpath(__file__)),
+    "transform": os.path.join(os.path.dirname(os.path.realpath(__file__)),
                               #"models", "EstBeats_SALAMI-i.npy")
     #"transform": os.path.join(os.path.dirname(os.path.realpath(__file__)),
                               #"models", "EstBeats_BeatlesIso.npy")
-    "transform": os.path.join(os.path.dirname(os.path.realpath(__file__)),
+    #"transform": os.path.join(os.path.dirname(os.path.realpath(__file__)),
                               "models", "EstBeats_Iso.npy")
 }
 
