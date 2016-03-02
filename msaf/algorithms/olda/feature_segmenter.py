@@ -72,16 +72,16 @@ if __name__ == '__main__':
     parameters = process_arguments()
 
     # Load the features
-    print '- ', os.path.basename(parameters['input_song'])
+    print('- ', os.path.basename(parameters['input_song']))
 
     X, Y, beats    = features(parameters['input_song'])
     # Load the transformation
     W           = segmenter.load_transform(parameters['transform'])
-    print '\tapplying transformation...'
+    print('\tapplying transformation...')
     X           = W.dot(X)
 
     # Find the segment boundaries
-    print '\tpredicting segments...'
+    print('\tpredicting segments...')
     if parameters['gnostic']:
         S           = segmenter.get_segments(X, kmin=len(Y)-1, kmax=len(Y))
     elif parameters['dynamic']:
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         S           = segmenter.get_segments(X)
 
     # Output lab file
-    print '\tsaving output to ', parameters['output_file']
+    print('\tsaving output to ', parameters['output_file'])
     segmenter.save_segments(parameters['output_file'], S, beats)
 
     pass

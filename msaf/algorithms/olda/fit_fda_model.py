@@ -106,14 +106,14 @@ def fit_model(X, Y, B, T, n_jobs):
         scores = Parallel(n_jobs=n_jobs)( delayed(score_model)(O.components_, *z) for z in zip(X, B, T))
 
         mean_score = np.mean(scores)
-        print 'Sigma=%.2e, score=%.3f' % (sig, mean_score)
+        print('Sigma=%.2e, score=%.3f' % (sig, mean_score))
 
         if mean_score > best_score:
             best_score  = mean_score
             best_sigma  = sig
             model       = O.components_
 
-    print 'Best sigma: %.2e' % best_sigma
+    print('Best sigma: %.2e' % best_sigma)
     return model
 
 if __name__ == '__main__':

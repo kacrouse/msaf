@@ -36,7 +36,7 @@ def evaluate_set(SETNAME, agg=True):
     
     scores = {}
     for A in algos:
-        print 'Scoring %s...' % A
+        print('Scoring %s...' % A)
         # Load the corresponding predictions
         predictions = load_annotations('%s/predictions/%s/%s/*' % (ROOTPATH, SETNAME, A))
         
@@ -155,10 +155,10 @@ def get_top_sig(SETNAME, perfs, idx, p=0.05):
     ordering = [(v, k) for k, v in mean.iteritems()]
     ordering.sort(reverse=True)
     
-    print '%s\t%s' % (METRICS[idx], SETNAME)
+    print('%s\t%s' % (METRICS[idx], SETNAME))
     
     for (v, k) in ordering:
-        print '%.3f\t%10s\t%.3e\t%r' % (v, k, sigdiff[k], sigdiff[k] * (n_algs -1) < p)
+        print('%.3f\t%10s\t%.3e\t%r' % (v, k, sigdiff[k], sigdiff[k] * (n_algs -1) < p))
 
 # <codecell>
 
@@ -168,9 +168,9 @@ def get_worst_examples(SETNAME, perfs, algorithm, idx, k=10):
     
     indices = np.argsort(perfs[algorithm][:, idx])[:k]
     
-    print '%s\t%s\t%s' % (METRICS[idx], SETNAME, algorithm)
+    print('%s\t%s\t%s' % (METRICS[idx], SETNAME, algorithm))
     for v in indices:
-        print '%.3f\t%s' % (perfs[algorithm][v, idx], files[v])
+        print('%.3f\t%s' % (perfs[algorithm][v, idx], files[v]))
 
 # <codecell>
 
@@ -195,7 +195,7 @@ del ind_perfs_beatles['rfda']
 
 for idx in range(len(METRICS)):
     get_top_sig('BEATLES', ind_perfs_beatles, idx=idx)
-    print
+    print()
 
 # <codecell>
 
@@ -205,7 +205,7 @@ plot_boxes(ind_perfs_beatles)
 
 for alg in sorted(ind_perfs_beatles.keys()):
     get_worst_examples('BEATLES', ind_perfs_beatles, alg, 2, 10)
-    print
+    print()
 
 # <codecell>
 
@@ -226,7 +226,7 @@ save_results('/home/bmcfee/git/olda/data/final_salami_scores.csv', perfs_salami)
 
 for alg in sorted(ind_perfs_salami.keys()):
     get_worst_examples('SALAMI', ind_perfs_salami, alg, 2, 5)
-    print
+    print()
 
 # <codecell>
 
@@ -236,7 +236,7 @@ del ind_perfs_salami['rfda']
 
 for idx in range(len(METRICS)):
     get_top_sig('SALAMI', ind_perfs_salami, idx=idx)
-    print
+    print()
 
 # <codecell>
 

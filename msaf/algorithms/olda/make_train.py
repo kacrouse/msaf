@@ -88,7 +88,7 @@ def import_data(song, rootpath, output_path, annot_beats):
     if os.path.exists(data_file):
         with open(data_file, 'r') as f:
             Data = pickle.load(f)
-            print song, 'cached!'
+            print(song, 'cached!')
     else:
         #try:
         X, B, dur = features(song, annot_beats)
@@ -109,7 +109,7 @@ def import_data(song, rootpath, output_path, annot_beats):
                 'segment_times': T,
                 'segment_labels': L,
                 'segments': Y}
-        print song, 'processed!'
+        print(song, 'processed!')
 
         with open(data_file, 'w') as f:
             pickle.dump(Data, f)
